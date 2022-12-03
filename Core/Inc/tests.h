@@ -1,7 +1,10 @@
 #pragma once
 #include "main.h"
+
 class Tests
 {
     public:
-        void blinkLeds(uint8_t *leds);
+        static void run(SPI_HandleTypeDef h, uint8_t *leds);
+        static void blinkLeds(SPI_HandleTypeDef h, uint8_t *leds);
+        static void testStates(SPI_HandleTypeDef h);
 };
