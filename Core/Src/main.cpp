@@ -129,30 +129,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
     while (1)
     {
-        //ISR
-
-
-        /* if(__HAL_TIM_GET_COUNTER(&htim16) - timer_val >= 10000) */
-        /* { */
-        /*     if(dummy) */
-        /*     { */
-        /*     UpdateLed::update(hspi3, 0x00, 0x00, 0x00); */
-        /*     dummy = false; */
-        /*     }else{ */
-        /*     UpdateLed::update(hspi3, 0xFF, 0xFF, 0xFF); */
-        /*     dummy = true; */
-        /*     } */
-        /*     timer_val = __HAL_TIM_GET_COUNTER(&htim16); */
-        /* } */
-
-        /* if(HAL_GPIO_ReadPin(CAR_1_GPIO_Port, CAR_1_Pin) == 1) */ 
-        /* { */
-        /*     UpdateLed::update(hspi3, 0x00, 0x00, 0x00); */
-        /* } */
-        /* if(HAL_GPIO_ReadPin(CAR_1_GPIO_Port, CAR_1_Pin) == 0) */ 
-        /* { */
-        /*     UpdateLed::update(hspi3, 0xFF, 0xFF, 0xFF); */
-        /* } */
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -347,11 +323,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : CAR_1_Pin */
-  GPIO_InitStruct.Pin = CAR_1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  /*Configure GPIO pin : CAR1_Pin */
+  GPIO_InitStruct.Pin = CAR1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(CAR_1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(CAR1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : SHIFT_REG_STORE_CLK_Pin */
   GPIO_InitStruct.Pin = SHIFT_REG_STORE_CLK_Pin;
@@ -360,8 +336,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(SHIFT_REG_STORE_CLK_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PB13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_13;
+  /*Configure GPIO pins : CAR2_Pin CAR3_Pin */
+  GPIO_InitStruct.Pin = CAR2_Pin|CAR3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
@@ -373,7 +349,31 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(SHIFT_REG_ENABLE_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : CAR4_Pin */
+  GPIO_InitStruct.Pin = CAR4_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(CAR4_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PEDESTRIAN1_Pin */
+  GPIO_InitStruct.Pin = PEDESTRIAN1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(PEDESTRIAN1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PEDESTRIAN2_Pin */
+  GPIO_InitStruct.Pin = PEDESTRIAN2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(PEDESTRIAN2_GPIO_Port, &GPIO_InitStruct);
+
   /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 

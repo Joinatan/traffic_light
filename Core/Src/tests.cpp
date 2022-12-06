@@ -72,26 +72,9 @@ void Tests::testStates(SPI_HandleTypeDef h)
         States::yellow(h);
         HAL_Delay(500 * 2);
 
-    /* States::testToggleWhite(h); */
     for(int i = 0; i < 8; i++)
     {
-        States::testToggleWhite(h);
-        HAL_Delay(500);
+        /* States::testToggleWhite(); */
+        /* HAL_Delay(500); */
     }
-    /* UpdateLed::update(h, state1->state); */
-    /* state1.state = state_1; */
-    /* UpdateLed::update(h, states.state1); */
-    /* states.runState(h, states.state1); */
-    /*     HAL_Delay(500 * 2); */
-
-    /* states.blinkYellow(h); */
-    /*     HAL_Delay(500 * 2); */
-    /* UpdateLed::update(h, states.state2); */
-    /*     HAL_Delay(500 * 2); */
-    /* UpdateLed::update(h, states.state3); */
-    /*     HAL_Delay(500 * 2); */
-    /* UpdateLed::update(h, states.state4); */
-    /*     HAL_Delay(500 * 2); */
-    /* UpdateLed::update(h, states.stateYellow); */
-    /*     HAL_Delay(500 * 2); */
 }

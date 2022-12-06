@@ -21,7 +21,7 @@ class States{
 
         static  uint8_t stateYellow[];
 
-        static SPI_HandleTypeDef* spiHandle;
+        static const SPI_HandleTypeDef spiHandle;
 
         static void yellow(SPI_HandleTypeDef h);
         /* static void testToggleWhite(SPI_HandleTypeDef h); */
