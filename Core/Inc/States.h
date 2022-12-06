@@ -5,10 +5,12 @@ class States{
     public:
         States();
         States(uint8_t* state);
+        States(uint8_t* state, uint8_t delay);
         /* States(uint8_t s1, uint8_t s2, uint8_t s3); */
 
 
         uint8_t* state;
+        uint8_t delay;
 
         bool in_queue = false;
 

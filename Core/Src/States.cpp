@@ -9,6 +9,12 @@ States::States(uint8_t* states)
 {
     this->state = states;
 }
+
+States::States(uint8_t* states, uint8_t delay)
+{
+    this->state = states;
+    this->delay = delay;
+}
 /* States::States(uint8_t[] s1, uint8_t[] s2, uint8_t[] s3) */
     /* :state1(s1) */ 
 /* {} */
