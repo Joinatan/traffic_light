@@ -7,7 +7,8 @@
 void Tests::run(SPI_HandleTypeDef h, uint8_t *leds)
 {
     /* Tests::blinkLeds(h, leds); */
-    Tests::testStates(h);
+    /* Tests::testStates(h); */
+    Tests::testButtons(h);
     return;
 }
 
@@ -41,40 +42,48 @@ void Tests::blinkLeds(SPI_HandleTypeDef h, uint8_t *leds)
     }
 }
 
-uint8_t state_1[] = {0x0C, 0x09, 0x0C};
-uint8_t state_2[] = {0x21, 0x0C, 0x09};
-uint8_t state_3[] = {0x09, 0x09, 0x11};
-uint8_t state_4[] = {0x09, 0x11, 0x09};
+States* state1 = new States(States::state1);
+States* state2 = new States(States::state2);
+States* state3 = new States(States::state3);
+States* state4 = new States(States::state4);
 void Tests::testStates(SPI_HandleTypeDef h)
 {
     /* States states; */
-    States* state1 = new States(state_1);
-    States* state2 = new States(state_2);
-    States* state3 = new States(state_3);
-    States* state4 = new States(state_4);
+    /* States* state1 = new States(States::state1); */
+    /* States* state2 = new States(States::state2); */
+    /* States* state3 = new States(States::state3); */
+    /* States* state4 = new States(States::state4); */
     state1->runState(h);
-        HAL_Delay(500 * 2);
-        States::yellow(h);
-        HAL_Delay(500 * 2);
+    HAL_Delay(500 * 2);
+    States::yellow(h);
+    HAL_Delay(500 * 2);
 
     state2->runState(h);
-        HAL_Delay(500 * 2);
-        States::yellow(h);
-        HAL_Delay(500 * 2);
+    HAL_Delay(500 * 2);
+    States::yellow(h);
+    HAL_Delay(500 * 2);
 
     state3->runState(h);
-        HAL_Delay(500 * 2);
-        States::yellow(h);
-        HAL_Delay(500 * 2);
+    HAL_Delay(500 * 2);
+    States::yellow(h);
+    HAL_Delay(500 * 2);
 
     state4->runState(h);
-        HAL_Delay(500 * 2);
-        States::yellow(h);
-        HAL_Delay(500 * 2);
+    HAL_Delay(500 * 2);
+    States::yellow(h);
+    HAL_Delay(500 * 2);
 
     for(int i = 0; i < 8; i++)
     {
-        /* States::testToggleWhite(); */
-        /* HAL_Delay(500); */
+        States::testToggleWhite();
+        HAL_Delay(500);
+    }
+}
+
+void Tests::testButtons(SPI_HandleTypeDef h)
+{
+    state1->runState(h);
+    for(;;)
+    {
     }
 }

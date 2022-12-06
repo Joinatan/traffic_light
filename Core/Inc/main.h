@@ -44,6 +44,7 @@ extern "C" {
 extern uint8_t LEDS[3];
 extern SPI_HandleTypeDef hspi3;
 
+
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/

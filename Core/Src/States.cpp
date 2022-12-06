@@ -33,43 +33,38 @@ void States::yellow(SPI_HandleTypeDef h)
 
 }
 
-/* void States::testToggleWhite(SPI_HandleTypeDef h) */
 void States::testToggleWhite()
 {
-    /* States::whiteLed1 = (States::whiteLed1 + 1) % 2; */
-    /* uint8_t bitToToggle = States::whiteLed1 * 32; */
-    /* bitToToggle = ~bitToToggle; */ 
 
     for(int i = 0; i < 5; i++)
     {
     
         LEDS[2] = LEDS[2] ^ 0x20;
         LEDS[1] = LEDS[1] ^ 0x20;
-    /* UpdateLed::update(h, LEDS); */
         UpdateLed::update(*States::spiHandle, LEDS);
         HAL_Delay(500);
     }
-
-    /* HAL_Delay(500); */
-    /* LEDS[2] = LEDS[2] & 0xcf; */
-    /* LEDS[1] = LEDS[1] & 0xcf; */
-    /* UpdateLed::update(h, LEDS); */
-
-    /* HAL_Delay(500); */
-    /* LEDS[2] = LEDS[2] | 0x20; */
-    /* LEDS[1] = LEDS[1] | 0x20; */
-    /* UpdateLed::update(h, LEDS); */
-
-    /* HAL_Delay(500); */
-    /* LEDS[2] = LEDS[2] & 0xcf; */
-    /* LEDS[1] = LEDS[1] & 0xcf; */
-    /* UpdateLed::update(h, LEDS); */
 }
+
+void States::toggleWhite()
+{
+        LEDS[2] = LEDS[2] ^ 0x20;
+        LEDS[1] = LEDS[1] ^ 0x20;
+        UpdateLed::update(*States::spiHandle, LEDS);
+}
+
+void States::shutOffWhite()
+{
+        LEDS[2] = LEDS[2] & ~0x20;
+        LEDS[1] = LEDS[1] & ~0x20;
+        UpdateLed::update(*States::spiHandle, LEDS);
+}
+
 void States::runState(SPI_HandleTypeDef h)
 {
     /* *States::current_state = *state; */
     LEDS[0] = this->state[0];
-    LEDS[1] = this->state[1];
-    LEDS[2] = this->state[2];
-    UpdateLed::update(h, this->state);
+    LEDS[1] = this->state[1] | (LEDS[1] & 0x20);
+    LEDS[2] = this->state[2] | (LEDS[2] & 0x20);
+    UpdateLed::update(h, LEDS);
 }

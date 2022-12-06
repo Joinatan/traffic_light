@@ -21,14 +21,17 @@ class States{
 
         static  uint8_t stateYellow[];
 
-        static const SPI_HandleTypeDef spiHandle;
+        static SPI_HandleTypeDef* spiHandle;
 
         static void yellow(SPI_HandleTypeDef h);
         /* static void testToggleWhite(SPI_HandleTypeDef h); */
         static void testToggleWhite();
+        static void toggleWhite();
+        static void shutOffWhite();
         void runState(SPI_HandleTypeDef h);
 
         static uint8_t whiteLed1;
         static uint8_t whiteLed2;
-
 };
+
+

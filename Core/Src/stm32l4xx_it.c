@@ -22,7 +22,6 @@
 #include "stm32l4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-//#include "States.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,10 +41,6 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-//States* test_state1 = new States(States::state1);
-//States* test_state2 = new States(States::state2);
-//States* test_state3 = new States(States::state3);
-//States* test_state4 = new States(States::state4);
 
 /* USER CODE END PV */
 
@@ -226,46 +221,5 @@ void EXTI15_10_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-/* void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) */
-/* { */
 
-/*     switch(GPIO_Pin) */
-/*     { */
-/*         case CAR1_Pin: */
-/*             break; */
-/*         case CAR2_Pin: */
-/*             break; */
-/*         case CAR3_Pin: */
-/*             break; */
-/*         case CAR4_Pin: */
-/*             break; */
-/*         case PEDESTRIAN1_Pin: */
-/*             break; */
-/*         case PEDESTRIAN2_Pin: */
-/*             break; */
-/*     } */
-
-/*     //test part */
-/*     /1* switch(GPIO_Pin) *1/ */
-/*     /1* { *1/ */
-/*     /1*     case CAR1_Pin: *1/ */
-/*     /1*         test_state1->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1*     case CAR2_Pin: *1/ */
-/*     /1*         test_state2->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1*     case CAR3_Pin: *1/ */
-/*     /1*         test_state1->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1*     case CAR4_Pin: *1/ */
-/*     /1*         test_state2->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1*     case PEDESTRIAN1_Pin: *1/ */
-/*     /1*         test_state3->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1*     case PEDESTRIAN2_Pin: *1/ */
-/*     /1*         test_state4->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1* } *1/ */
-/* } */
 /* USER CODE END 1 */
