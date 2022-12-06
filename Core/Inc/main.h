@@ -41,6 +41,7 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
+extern uint8_t LEDS[3];
 
 /* USER CODE END EC */
 

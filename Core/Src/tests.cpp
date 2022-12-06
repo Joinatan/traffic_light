@@ -41,15 +41,51 @@ void Tests::blinkLeds(SPI_HandleTypeDef h, uint8_t *leds)
     }
 }
 
+uint8_t state_1[] = {0x0C, 0x09, 0x0C};
+uint8_t state_2[] = {0x21, 0x0C, 0x09};
+uint8_t state_3[] = {0x09, 0x09, 0x11};
+uint8_t state_4[] = {0x09, 0x11, 0x09};
 void Tests::testStates(SPI_HandleTypeDef h)
 {
-    States states;
-    /* UpdateLed::update(h, states.state1); */
-    states.runState(h, states.state1);
+    /* States states; */
+    States* state1 = new States(state_1);
+    States* state2 = new States(state_2);
+    States* state3 = new States(state_3);
+    States* state4 = new States(state_4);
+    state1->runState(h);
+        HAL_Delay(500 * 2);
+        States::yellow(h);
         HAL_Delay(500 * 2);
 
-    states.blinkYellow(h);
+    state2->runState(h);
         HAL_Delay(500 * 2);
+        States::yellow(h);
+        HAL_Delay(500 * 2);
+
+    state3->runState(h);
+        HAL_Delay(500 * 2);
+        States::yellow(h);
+        HAL_Delay(500 * 2);
+
+    state4->runState(h);
+        HAL_Delay(500 * 2);
+        States::yellow(h);
+        HAL_Delay(500 * 2);
+
+    /* States::testToggleWhite(h); */
+    for(int i = 0; i < 8; i++)
+    {
+        States::testToggleWhite(h);
+        HAL_Delay(500);
+    }
+    /* UpdateLed::update(h, state1->state); */
+    /* state1.state = state_1; */
+    /* UpdateLed::update(h, states.state1); */
+    /* states.runState(h, states.state1); */
+    /*     HAL_Delay(500 * 2); */
+
+    /* states.blinkYellow(h); */
+    /*     HAL_Delay(500 * 2); */
     /* UpdateLed::update(h, states.state2); */
     /*     HAL_Delay(500 * 2); */
     /* UpdateLed::update(h, states.state3); */

@@ -53,6 +53,7 @@ uint8_t led1;
 uint8_t led2;
 uint8_t led3;
 uint8_t leds[] = {led1, led2, led3};
+uint8_t LEDS[3] = {0x00, 0x00, 0x00};
 
 /* USER CODE END PV */
 
