@@ -10,7 +10,7 @@ States::States(uint8_t* states)
     this->state = states;
 }
 
-States::States(uint8_t* states, uint8_t delay)
+States::States(uint8_t* states, uint32_t delay)
 {
     this->state = states;
     this->delay = delay;
@@ -24,7 +24,7 @@ uint8_t States::state1[] = {0x0C, 0x09, 0x0C};
 uint8_t States::state2[] = {0x21, 0x0C, 0x09};
 uint8_t States::state3[] = {0x09, 0x09, 0x11};
 uint8_t States::state4[] = {0x09, 0x11, 0x09};
-uint8_t States::stateYellow[] = {0x12, 0x02, 0x02};
+uint8_t States::stateYellow[] = {0x12, 0x0a, 0x0a};
 uint8_t States::whiteLed1 = 0;
 uint8_t States::whiteLed2 = 0;
 SPI_HandleTypeDef* States::spiHandle = &hspi3;
@@ -52,17 +52,31 @@ void States::testToggleWhite()
     }
 }
 
-void States::toggleWhite()
+void States::toggleWhite1()
 {
-        LEDS[2] = LEDS[2] ^ 0x20;
+        /* LEDS[2] = LEDS[2] ^ 0x20; */
         LEDS[1] = LEDS[1] ^ 0x20;
         UpdateLed::update(*States::spiHandle, LEDS);
 }
 
-void States::shutOffWhite()
+void States::toggleWhite2()
+{
+        LEDS[2] = LEDS[2] ^ 0x20;
+        /* LEDS[1] = LEDS[1] ^ 0x20; */
+        UpdateLed::update(*States::spiHandle, LEDS);
+}
+
+void States::shutOffWhite1()
+{
+        /* LEDS[2] = LEDS[2] & ~0x20; */
+        LEDS[1] = LEDS[1] & ~0x20;
+        UpdateLed::update(*States::spiHandle, LEDS);
+}
+
+void States::shutOffWhite2()
 {
         LEDS[2] = LEDS[2] & ~0x20;
-        LEDS[1] = LEDS[1] & ~0x20;
+        /* LEDS[1] = LEDS[1] & ~0x20; */
         UpdateLed::update(*States::spiHandle, LEDS);
 }
 

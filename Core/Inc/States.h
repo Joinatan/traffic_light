@@ -5,12 +5,12 @@ class States{
     public:
         States();
         States(uint8_t* state);
-        States(uint8_t* state, uint8_t delay);
+        States(uint8_t* state, uint32_t delay);
         /* States(uint8_t s1, uint8_t s2, uint8_t s3); */
 
 
         uint8_t* state;
-        uint8_t delay;
+        uint32_t delay;
 
         bool in_queue = false;
 
@@ -28,8 +28,10 @@ class States{
         static void yellow(SPI_HandleTypeDef h);
         /* static void testToggleWhite(SPI_HandleTypeDef h); */
         static void testToggleWhite();
-        static void toggleWhite();
-        static void shutOffWhite();
+        static void toggleWhite1();
+        static void toggleWhite2();
+        static void shutOffWhite1();
+        static void shutOffWhite2();
         void runState(SPI_HandleTypeDef h);
 
         static uint8_t whiteLed1;
