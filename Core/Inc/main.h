@@ -49,6 +49,7 @@ extern SPI_HandleTypeDef hspi3;
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
+/* #define RUN_TEST_PROGRAM */
 
 /* USER CODE END EM */
 

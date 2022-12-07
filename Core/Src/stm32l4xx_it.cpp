@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    stm32l4xx_it.c
-  * @brief   Interrupt Service Routines.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2022 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    stm32l4xx_it.c
+ * @brief   Interrupt Service Routines.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2022 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -22,7 +22,7 @@
 #include "stm32l4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-//#include "States.h"
+#include "States.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,10 +42,12 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-//States* test_state1 = new States(States::state1);
-//States* test_state2 = new States(States::state2);
-//States* test_state3 = new States(States::state3);
-//States* test_state4 = new States(States::state4);
+States* test_state1 = new States(States::state1);
+States* test_state2 = new States(States::state2);
+States* test_state3 = new States(States::state3);
+States* test_state4 = new States(States::state4);
+States* test_stateY1 = new States(States::stateYellow1);
+States* test_stateY2 = new States(States::stateYellow2);
 
 /* USER CODE END PV */
 
@@ -71,91 +73,91 @@ extern TIM_HandleTypeDef htim1;
 /*           Cortex-M4 Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
-  * @brief This function handles Non maskable interrupt.
-  */
+ * @brief This function handles Non maskable interrupt.
+ */
 void NMI_Handler(void)
 {
-  /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+    /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
 
-  /* USER CODE END NonMaskableInt_IRQn 0 */
-  /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-  while (1)
-  {
-  }
-  /* USER CODE END NonMaskableInt_IRQn 1 */
+    /* USER CODE END NonMaskableInt_IRQn 0 */
+    /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+    while (1)
+    {
+    }
+    /* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
 /**
-  * @brief This function handles Hard fault interrupt.
-  */
+ * @brief This function handles Hard fault interrupt.
+ */
 void HardFault_Handler(void)
 {
-  /* USER CODE BEGIN HardFault_IRQn 0 */
+    /* USER CODE BEGIN HardFault_IRQn 0 */
 
-  /* USER CODE END HardFault_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_HardFault_IRQn 0 */
-    /* USER CODE END W1_HardFault_IRQn 0 */
-  }
+    /* USER CODE END HardFault_IRQn 0 */
+    while (1)
+    {
+        /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+        /* USER CODE END W1_HardFault_IRQn 0 */
+    }
 }
 
 /**
-  * @brief This function handles Memory management fault.
-  */
+ * @brief This function handles Memory management fault.
+ */
 void MemManage_Handler(void)
 {
-  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+    /* USER CODE BEGIN MemoryManagement_IRQn 0 */
 
-  /* USER CODE END MemoryManagement_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
-    /* USER CODE END W1_MemoryManagement_IRQn 0 */
-  }
+    /* USER CODE END MemoryManagement_IRQn 0 */
+    while (1)
+    {
+        /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
+        /* USER CODE END W1_MemoryManagement_IRQn 0 */
+    }
 }
 
 /**
-  * @brief This function handles Prefetch fault, memory access fault.
-  */
+ * @brief This function handles Prefetch fault, memory access fault.
+ */
 void BusFault_Handler(void)
 {
-  /* USER CODE BEGIN BusFault_IRQn 0 */
+    /* USER CODE BEGIN BusFault_IRQn 0 */
 
-  /* USER CODE END BusFault_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_BusFault_IRQn 0 */
-    /* USER CODE END W1_BusFault_IRQn 0 */
-  }
+    /* USER CODE END BusFault_IRQn 0 */
+    while (1)
+    {
+        /* USER CODE BEGIN W1_BusFault_IRQn 0 */
+        /* USER CODE END W1_BusFault_IRQn 0 */
+    }
 }
 
 /**
-  * @brief This function handles Undefined instruction or illegal state.
-  */
+ * @brief This function handles Undefined instruction or illegal state.
+ */
 void UsageFault_Handler(void)
 {
-  /* USER CODE BEGIN UsageFault_IRQn 0 */
+    /* USER CODE BEGIN UsageFault_IRQn 0 */
 
-  /* USER CODE END UsageFault_IRQn 0 */
-  while (1)
-  {
-    /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
-    /* USER CODE END W1_UsageFault_IRQn 0 */
-  }
+    /* USER CODE END UsageFault_IRQn 0 */
+    while (1)
+    {
+        /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
+        /* USER CODE END W1_UsageFault_IRQn 0 */
+    }
 }
 
 /**
-  * @brief This function handles Debug monitor.
-  */
+ * @brief This function handles Debug monitor.
+ */
 void DebugMon_Handler(void)
 {
-  /* USER CODE BEGIN DebugMonitor_IRQn 0 */
+    /* USER CODE BEGIN DebugMonitor_IRQn 0 */
 
-  /* USER CODE END DebugMonitor_IRQn 0 */
-  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
+    /* USER CODE END DebugMonitor_IRQn 0 */
+    /* USER CODE BEGIN DebugMonitor_IRQn 1 */
 
-  /* USER CODE END DebugMonitor_IRQn 1 */
+    /* USER CODE END DebugMonitor_IRQn 1 */
 }
 
 /******************************************************************************/
@@ -166,106 +168,105 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles EXTI line4 interrupt.
-  */
+ * @brief This function handles EXTI line4 interrupt.
+ */
 void EXTI4_IRQHandler(void)
 {
-  /* USER CODE BEGIN EXTI4_IRQn 0 */
+    /* USER CODE BEGIN EXTI4_IRQn 0 */
 
-  /* USER CODE END EXTI4_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(CAR1_Pin);
-  /* USER CODE BEGIN EXTI4_IRQn 1 */
+    /* USER CODE END EXTI4_IRQn 0 */
+    HAL_GPIO_EXTI_IRQHandler(CAR1_Pin);
+    /* USER CODE BEGIN EXTI4_IRQn 1 */
 
-  /* USER CODE END EXTI4_IRQn 1 */
+    /* USER CODE END EXTI4_IRQn 1 */
 }
 
 /**
-  * @brief This function handles EXTI line[9:5] interrupts.
-  */
+ * @brief This function handles EXTI line[9:5] interrupts.
+ */
 void EXTI9_5_IRQHandler(void)
 {
-  /* USER CODE BEGIN EXTI9_5_IRQn 0 */
+    /* USER CODE BEGIN EXTI9_5_IRQn 0 */
 
-  /* USER CODE END EXTI9_5_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(PEDESTRIAN2_Pin);
-  /* USER CODE BEGIN EXTI9_5_IRQn 1 */
+    /* USER CODE END EXTI9_5_IRQn 0 */
+    HAL_GPIO_EXTI_IRQHandler(PEDESTRIAN2_Pin);
+    /* USER CODE BEGIN EXTI9_5_IRQn 1 */
 
-  /* USER CODE END EXTI9_5_IRQn 1 */
+    /* USER CODE END EXTI9_5_IRQn 1 */
 }
 
 /**
-  * @brief This function handles TIM1 update interrupt and TIM16 global interrupt.
-  */
+ * @brief This function handles TIM1 update interrupt and TIM16 global interrupt.
+ */
 void TIM1_UP_TIM16_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM1_UP_TIM16_IRQn 0 */
+    /* USER CODE BEGIN TIM1_UP_TIM16_IRQn 0 */
 
-  /* USER CODE END TIM1_UP_TIM16_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim1);
-  HAL_TIM_IRQHandler(&htim16);
-  /* USER CODE BEGIN TIM1_UP_TIM16_IRQn 1 */
+    /* USER CODE END TIM1_UP_TIM16_IRQn 0 */
+    HAL_TIM_IRQHandler(&htim1);
+    HAL_TIM_IRQHandler(&htim16);
+    /* USER CODE BEGIN TIM1_UP_TIM16_IRQn 1 */
 
-  /* USER CODE END TIM1_UP_TIM16_IRQn 1 */
+    /* USER CODE END TIM1_UP_TIM16_IRQn 1 */
 }
 
 /**
-  * @brief This function handles EXTI line[15:10] interrupts.
-  */
+ * @brief This function handles EXTI line[15:10] interrupts.
+ */
 void EXTI15_10_IRQHandler(void)
 {
-  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
+    /* USER CODE BEGIN EXTI15_10_IRQn 0 */
 
-  /* USER CODE END EXTI15_10_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(CAR4_Pin);
-  HAL_GPIO_EXTI_IRQHandler(CAR2_Pin);
-  HAL_GPIO_EXTI_IRQHandler(CAR3_Pin);
-  HAL_GPIO_EXTI_IRQHandler(PEDESTRIAN1_Pin);
-  /* USER CODE BEGIN EXTI15_10_IRQn 1 */
+    /* USER CODE END EXTI15_10_IRQn 0 */
+    HAL_GPIO_EXTI_IRQHandler(CAR4_Pin);
+    HAL_GPIO_EXTI_IRQHandler(CAR2_Pin);
+    HAL_GPIO_EXTI_IRQHandler(CAR3_Pin);
+    HAL_GPIO_EXTI_IRQHandler(PEDESTRIAN1_Pin);
+    /* USER CODE BEGIN EXTI15_10_IRQn 1 */
 
-  /* USER CODE END EXTI15_10_IRQn 1 */
+    /* USER CODE END EXTI15_10_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
-/* void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) */
-/* { */
-
-/*     switch(GPIO_Pin) */
-/*     { */
-/*         case CAR1_Pin: */
-/*             break; */
-/*         case CAR2_Pin: */
-/*             break; */
-/*         case CAR3_Pin: */
-/*             break; */
-/*         case CAR4_Pin: */
-/*             break; */
-/*         case PEDESTRIAN1_Pin: */
-/*             break; */
-/*         case PEDESTRIAN2_Pin: */
-/*             break; */
-/*     } */
-
-/*     //test part */
-/*     /1* switch(GPIO_Pin) *1/ */
-/*     /1* { *1/ */
-/*     /1*     case CAR1_Pin: *1/ */
-/*     /1*         test_state1->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1*     case CAR2_Pin: *1/ */
-/*     /1*         test_state2->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1*     case CAR3_Pin: *1/ */
-/*     /1*         test_state1->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1*     case CAR4_Pin: *1/ */
-/*     /1*         test_state2->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1*     case PEDESTRIAN1_Pin: *1/ */
-/*     /1*         test_state3->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1*     case PEDESTRIAN2_Pin: *1/ */
-/*     /1*         test_state4->runState(*States::spiHandle); *1/ */
-/*     /1*         break; *1/ */
-/*     /1* } *1/ */
-/* } */
+#ifdef RUN_TEST_PROGRAM
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    //test part
+    switch(GPIO_Pin)
+    {
+        case CAR1_Pin:
+            if(HAL_GPIO_ReadPin(CAR1_GPIO_Port, CAR1_Pin) == 1)
+            {
+                test_state1->runState(*States::spiHandle);
+            }
+            break;
+        case CAR2_Pin:
+            if(HAL_GPIO_ReadPin(CAR2_GPIO_Port, CAR2_Pin) == 1)
+            {
+                test_state2->runState(*States::spiHandle);
+            }
+            break;
+        case CAR3_Pin:
+            if(HAL_GPIO_ReadPin(CAR3_GPIO_Port, CAR3_Pin) == 1)
+            {
+                test_state1->runState(*States::spiHandle);
+            }
+            break;
+        case CAR4_Pin:
+            if(HAL_GPIO_ReadPin(CAR4_GPIO_Port, CAR4_Pin) == 1)
+            {
+                test_state2->runState(*States::spiHandle);
+            }
+            break;
+        case PEDESTRIAN1_Pin:
+            /* test_state3->runState(*States::spiHandle); */
+            test_stateY1->runState(*States::spiHandle);
+            break;
+        case PEDESTRIAN2_Pin:
+            /* test_state4->runState(*States::spiHandle); */
+            test_stateY2->runState(*States::spiHandle);
+            break;
+    }
+}
+#endif
 /* USER CODE END 1 */
