@@ -1,10 +1,10 @@
 #MicroXplorer Configuration settings - do not modify
 FREERTOS.BinarySemaphores01=ISR_semaphore,Dynamic,NULL;blink1_semaphore,Dynamic,NULL;blink2_semaphore,Dynamic,NULL;yellow_semaphore,Dynamic,NULL;start_yellow_semaphore,Dynamic,NULL
-FREERTOS.FootprintOK=false
+FREERTOS.FootprintOK=true
 FREERTOS.IPParameters=Tasks01,FootprintOK,Mutexes01,Queues01,configTOTAL_HEAP_SIZE,configUSE_NEWLIB_REENTRANT,BinarySemaphores01,Timers01
 FREERTOS.Mutexes01=STATE_MUTEX,Dynamic,NULL
 FREERTOS.Queues01=STATE_QUEUE,16,uint32_t,0,Dynamic,NULL,NULL
-FREERTOS.Tasks01=defaultTask,24,128,StartDefaultTask,Default,NULL,Dynamic,NULL,NULL;UPDATE_STATE_TA,8,256,UPDATE_STATE,Default,NULL,Dynamic,NULL,NULL;YELLOW_TASK,8,512,RUN_YELLOW,Default,NULL,Dynamic,NULL,NULL;RUN_STATES_TASK,8,512,RUN_STATES,Default,NULL,Dynamic,NULL,NULL;PEDESTRIAN_TASK,8,512,PEDESTRIAN_BLINK,Default,NULL,Dynamic,NULL,NULL;ISR_task,40,8000,ISR_rtos,Default,NULL,Dynamic,NULL,NULL;PD_TASK2,8,512,PEDESTRIAN_BLINK2,Default,NULL,Dynamic,NULL,NULL;BASE_TASK,8,512,BASE,Default,NULL,Dynamic,NULL,NULL
+FREERTOS.Tasks01=defaultTask,24,128,StartDefaultTask,Default,NULL,Dynamic,NULL,NULL;UPDATE_STATE_TA,24,256,UPDATE_STATE,Default,NULL,Dynamic,NULL,NULL;YELLOW_TASK,24,512,RUN_YELLOW,Default,NULL,Dynamic,NULL,NULL;RUN_STATES_TASK,25,512,RUN_STATES,Default,NULL,Dynamic,NULL,NULL;PEDESTRIAN_TASK,25,512,PEDESTRIAN_BLINK,Default,NULL,Dynamic,NULL,NULL;ISR_task,40,8000,ISR_rtos,Default,NULL,Dynamic,NULL,NULL;PD_TASK2,25,512,PEDESTRIAN_BLINK2,Default,NULL,Dynamic,NULL,NULL;BASE_TASK,24,512,BASE,Default,NULL,Dynamic,NULL,NULL
 FREERTOS.Timers01=TIM_orange_delay,Orange_delay,osTimerOnce,Default,NULL,Dynamic,NULL;TIM_pedestrianDelay,pedestrian_delay,osTimerOnce,Default,NULL,Dynamic,NULL;TIM_green_delay,green_delay,osTimerPeriodic,Default,NULL,Dynamic,NULL;TIM_yellow,yellow_delay,osTimerOnce,Default,NULL,Dynamic,NULL
 FREERTOS.configTOTAL_HEAP_SIZE=50000
 FREERTOS.configUSE_NEWLIB_REENTRANT=1

@@ -49,14 +49,16 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 uint32_t greenDelay = 4000;
-uint32_t toggleFreq = 800;
+uint32_t toggleFreq = 400;
 uint32_t redDelayMax = 1000;
-uint32_t pedestrianDelay = 4000;
-uint32_t orangeDelay = 1500;
-uint32_t walkingDelay = 5000;
+uint32_t pedestrianDelay = 500;
+uint32_t orangeDelay = 500;
+uint32_t walkingDelay = 8000;
 
 States* state_1 = new States(States::state1, greenDelay);
 States* state_2 = new States(States::state2, greenDelay);
+/* States* state_1 = new States(States::state1, 10); */
+/* States* state_2 = new States(States::state2, 10); */
 States* state_3 = new States(States::state3, walkingDelay);
 States* state_4 = new States(States::state4, walkingDelay);
 States* state_yellow1 = new States(States::stateYellow1, orangeDelay);
@@ -75,8 +77,11 @@ volatile uint16_t gpio = 0;
 
 /* bool carLane1 = false; */
 /* bool carLane2 = false; */
+bool pd1Waiting = false;
+bool pd2Waiting = false;
 
 volatile uint8_t carLane = 0x00;
+uint8_t prio = 1;
 uint8_t i = 1;
 
 /* USER CODE END Variables */
@@ -92,28 +97,28 @@ osThreadId_t UPDATE_STATE_TAHandle;
 const osThreadAttr_t UPDATE_STATE_TA_attributes = {
     .name = "UPDATE_STATE_TA",
     .stack_size = 256 * 4,
-    .priority = (osPriority_t) osPriorityLow,
+    .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for YELLOW_TASK */
 osThreadId_t YELLOW_TASKHandle;
 const osThreadAttr_t YELLOW_TASK_attributes = {
     .name = "YELLOW_TASK",
     .stack_size = 512 * 4,
-    .priority = (osPriority_t) osPriorityLow,
+    .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for RUN_STATES_TASK */
 osThreadId_t RUN_STATES_TASKHandle;
 const osThreadAttr_t RUN_STATES_TASK_attributes = {
     .name = "RUN_STATES_TASK",
     .stack_size = 512 * 4,
-    .priority = (osPriority_t) osPriorityLow,
+    .priority = (osPriority_t) osPriorityNormal1,
 };
 /* Definitions for PEDESTRIAN_TASK */
 osThreadId_t PEDESTRIAN_TASKHandle;
 const osThreadAttr_t PEDESTRIAN_TASK_attributes = {
     .name = "PEDESTRIAN_TASK",
     .stack_size = 512 * 4,
-    .priority = (osPriority_t) osPriorityLow,
+    .priority = (osPriority_t) osPriorityNormal1,
 };
 /* Definitions for ISR_task */
 osThreadId_t ISR_taskHandle;
@@ -127,14 +132,14 @@ osThreadId_t PD_TASK2Handle;
 const osThreadAttr_t PD_TASK2_attributes = {
     .name = "PD_TASK2",
     .stack_size = 512 * 4,
-    .priority = (osPriority_t) osPriorityLow,
+    .priority = (osPriority_t) osPriorityNormal1,
 };
 /* Definitions for BASE_TASK */
 osThreadId_t BASE_TASKHandle;
 const osThreadAttr_t BASE_TASK_attributes = {
     .name = "BASE_TASK",
     .stack_size = 512 * 4,
-    .priority = (osPriority_t) osPriorityLow,
+    .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for STATE_QUEUE */
 osMessageQueueId_t STATE_QUEUEHandle;
@@ -360,13 +365,21 @@ void UPDATE_STATE(void *argument)
     {
         //------------TAKE SEMAPHORE
         osSemaphoreAcquire(blink2_semaphoreHandle, osWaitForever);
+        if(current_state == state_3)
+        {
+                pd1Waiting = false;
+        }
+        if(current_state == state_4)
+        {
+                pd2Waiting = false;
+        }
         if(osMessageQueueGetCount(STATE_QUEUEHandle) > 0)
         {
             //terminate base state
             osThreadTerminate(BASE_TASKHandle);
 
             i = 5;
-            osMessageQueueGet(STATE_QUEUEHandle, &msgBuf, NULL, osWaitForever);
+            osMessageQueueGet(STATE_QUEUEHandle, &msgBuf, &prio, osWaitForever);
 
             previous_state = current_state;
 
@@ -384,14 +397,16 @@ void UPDATE_STATE(void *argument)
 
             if(current_state == state_3)
             {
-                States::shutOffWhite2();
                 osThreadTerminate(PEDESTRIAN_TASKHandle);
+                States::shutOffWhite2();
+                /* pd1Waiting = false; */
             }
 
             if(current_state == state_4)
             {
-                States::shutOffWhite1();
                 osThreadTerminate(PD_TASK2Handle);
+                States::shutOffWhite1();
+                /* pd2Waiting = false; */
             }
         }else{
             if(osThreadGetState(BASE_TASKHandle) == osThreadTerminated)
@@ -537,6 +552,11 @@ void ISR_rtos(void *argument)
         {
             case CAR1_Pin:
                 /* if(HAL_GPIO_ReadPin(CAR1_GPIO_Port, CAR1_Pin) == 1 || HAL_GPIO_ReadPin(CAR3_GPIO_Port, CAR3_Pin) == 1) */
+                /* if(i < 5 && carLane == 0x00) */
+                if(carLane == 0x00 && pd1Waiting == false && pd2Waiting == false)
+                {   
+                    osSemaphoreRelease(blink2_semaphoreHandle);
+                }
                 if(HAL_GPIO_ReadPin(CAR1_GPIO_Port, CAR1_Pin) == 1)
                 {
                     carLane = carLane | 0x01;
@@ -560,6 +580,11 @@ void ISR_rtos(void *argument)
                 break;
             case CAR2_Pin:
                 /* if(HAL_GPIO_ReadPin(CAR2_GPIO_Port, CAR2_Pin) == 1 || HAL_GPIO_ReadPin(CAR4_GPIO_Port, CAR4_Pin) == 1) */
+                /* if(i < 5 && carLane == 0x00) */
+                if(carLane == 0x00 && pd1Waiting == false && pd2Waiting == false)
+                {   
+                    osSemaphoreRelease(blink2_semaphoreHandle);
+                }
                 if(HAL_GPIO_ReadPin(CAR2_GPIO_Port, CAR2_Pin) == 1)
                 {
                     carLane = carLane | 0x02;
@@ -580,6 +605,11 @@ void ISR_rtos(void *argument)
                 }
                 break;
             case CAR3_Pin:
+                /* if(i < 5 && carLane == 0x00) */
+                if(carLane == 0x00 && pd1Waiting == false && pd2Waiting == false)
+                {   
+                    osSemaphoreRelease(blink2_semaphoreHandle);
+                }
                 /* if(HAL_GPIO_ReadPin(CAR1_GPIO_Port, CAR1_Pin) == 1 || HAL_GPIO_ReadPin(CAR3_GPIO_Port, CAR3_Pin) == 1) */
                 if(HAL_GPIO_ReadPin(CAR3_GPIO_Port, CAR3_Pin) == 1)
                 {
@@ -601,6 +631,11 @@ void ISR_rtos(void *argument)
                 }
                 break;
             case CAR4_Pin:
+                /* if(i < 5 && carLane == 0x00) */
+                if(carLane == 0x00 && pd1Waiting == false && pd2Waiting == false)
+                {   
+                    osSemaphoreRelease(blink2_semaphoreHandle);
+                }
                 /* if(HAL_GPIO_ReadPin(CAR2_GPIO_Port, CAR2_Pin) == 1 || HAL_GPIO_ReadPin(CAR4_GPIO_Port, CAR4_Pin) == 1) */
                 if(HAL_GPIO_ReadPin(CAR4_GPIO_Port, CAR4_Pin) == 1)
                 {
@@ -622,9 +657,14 @@ void ISR_rtos(void *argument)
             case PEDESTRIAN1_Pin:
                 if(state_3->in_queue == false && current_state != state_3)
                 {
-                    /* osMessageQueuePut(STATE_QUEUEHandle, &state_yellowBoth, 0, osWaitForever); */
-                    osMessageQueuePut(STATE_QUEUEHandle, &state_3, 0, osWaitForever);
+                    /* if(osMessageQueueGetCount(STATE_QUEUEHandle) < 1 && carLane == 0x00) */
+                    if(!pd2Waiting && !pd1Waiting && carLane == 0x00)
+                    {
+                        osSemaphoreRelease(blink2_semaphoreHandle);
+                    }
+                    osMessageQueuePut(STATE_QUEUEHandle, &state_3, 1, osWaitForever);
                     state_3->in_queue = true;
+                    pd1Waiting = true;
 
                     osTimerStart(TIM_pedestrianDelayHandle, pedestrianDelay);
                     PEDESTRIAN_TASKHandle = osThreadNew(PEDESTRIAN_BLINK, NULL, &PEDESTRIAN_TASK_attributes);
@@ -633,9 +673,14 @@ void ISR_rtos(void *argument)
             case PEDESTRIAN2_Pin:
                 if(state_4->in_queue == false && current_state != state_4)
                 {
-                    /* osMessageQueuePut(STATE_QUEUEHandle, &state_yellowBoth, 0, osWaitForever); */
-                    osMessageQueuePut(STATE_QUEUEHandle, &state_4, 0, osWaitForever);
+                    /* if(osMessageQueueGetCount(STATE_QUEUEHandle) == 0 && carLane == 0x00) */
+                    if(!pd2Waiting && !pd1Waiting && carLane == 0x00)
+                    {
+                        osSemaphoreRelease(blink2_semaphoreHandle);
+                    }
+                    osMessageQueuePut(STATE_QUEUEHandle, &state_4, 1, osWaitForever);
                     state_4->in_queue = true;
+                    pd2Waiting = true;
 
                     osTimerStart(TIM_pedestrianDelayHandle, pedestrianDelay);
                     PD_TASK2Handle = osThreadNew(PEDESTRIAN_BLINK2, NULL, &PD_TASK2_attributes);
@@ -740,7 +785,7 @@ void BASE(void *argument)
                     previous_state = current_state;
                     i = (i+1)%4;
                 }
-                
+
                 break;
         }
 
