@@ -21,11 +21,14 @@ class States{
         static  uint8_t state3[];
         static  uint8_t state4[];
 
-        static  uint8_t stateYellow[];
+        static  uint8_t stateYellowBoth[];
+        static  uint8_t stateYellow1[];
+        static  uint8_t stateYellow2[];
 
         static SPI_HandleTypeDef* spiHandle;
 
         static void yellow(SPI_HandleTypeDef h);
+        /* static void yellow2(SPI_HandleTypeDef h); */
         /* static void testToggleWhite(SPI_HandleTypeDef h); */
         static void testToggleWhite();
         static void toggleWhite1();
