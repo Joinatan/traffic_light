@@ -52,7 +52,7 @@ uint32_t greenDelay = 4000;
 uint32_t toggleFreq = 400;
 uint32_t redDelayMax = 1000;
 uint32_t pedestrianDelay = 500;
-uint32_t orangeDelay = 500;
+uint32_t orangeDelay = 1000;
 uint32_t walkingDelay = 8000;
 
 States* state_1 = new States(States::state1, greenDelay);
@@ -75,12 +75,13 @@ States* base_states[4] = {state_yellowBoth, state_1, state_yellowBoth, state_2};
 
 volatile uint16_t gpio = 0;
 
-/* bool carLane1 = false; */
-/* bool carLane2 = false; */
 bool pd1Waiting = false;
 bool pd2Waiting = false;
 
+//bit 0 and 1 indicates cars in respective lane
 volatile uint8_t carLane = 0x00;
+
+
 uint8_t prio = 1;
 uint8_t i = 1;
 
@@ -111,14 +112,14 @@ osThreadId_t RUN_STATES_TASKHandle;
 const osThreadAttr_t RUN_STATES_TASK_attributes = {
     .name = "RUN_STATES_TASK",
     .stack_size = 512 * 4,
-    .priority = (osPriority_t) osPriorityNormal1,
+    .priority = (osPriority_t) osPriorityNormal2,
 };
 /* Definitions for PEDESTRIAN_TASK */
 osThreadId_t PEDESTRIAN_TASKHandle;
 const osThreadAttr_t PEDESTRIAN_TASK_attributes = {
     .name = "PEDESTRIAN_TASK",
     .stack_size = 512 * 4,
-    .priority = (osPriority_t) osPriorityNormal1,
+    .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for ISR_task */
 osThreadId_t ISR_taskHandle;
@@ -224,6 +225,14 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
  */
 void MX_FREERTOS_Init(void) {
     /* USER CODE BEGIN Init */
+    if(HAL_GPIO_ReadPin(CAR1_GPIO_Port, CAR1_Pin) == 1 || HAL_GPIO_ReadPin(CAR3_GPIO_Port, CAR3_Pin) == 1)
+    {
+        carLane = carLane | 0x01;
+    }
+    if(HAL_GPIO_ReadPin(CAR2_GPIO_Port, CAR2_Pin) == 1 || HAL_GPIO_ReadPin(CAR4_GPIO_Port, CAR4_Pin) == 1)
+    {
+        carLane = carLane | 0x02;
+    }
 
     /* USER CODE END Init */
     /* Create the mutex(es) */
@@ -387,7 +396,9 @@ void UPDATE_STATE(void *argument)
             osSemaphoreRelease(start_yellow_semaphoreHandle);
             osSemaphoreAcquire(yellow_semaphoreHandle, osWaitForever);
 
+            taskENTER_CRITICAL();
             current_state = msgBuf;
+            taskEXIT_CRITICAL();
             osTimerStart(TIM_orange_delayHandle, current_state->delay);
 
             //===================test
@@ -442,32 +453,44 @@ void RUN_YELLOW(void *argument)
         //from state_1 to any pd
         if(previous_state == state_1 && (msgBuf == state_3 || msgBuf == state_4))
         {
+            taskENTER_CRITICAL();
             current_state = state_yellow1;
+            taskEXIT_CRITICAL();
         }
         //from state_1 to state_2
         if(previous_state == state_1 && msgBuf == state_2)
         {
+            taskENTER_CRITICAL();
             current_state = state_yellowBoth;
+            taskEXIT_CRITICAL();
         }
         //from state_2 to any pd
         if(previous_state == state_2 && (msgBuf == state_3 || msgBuf == state_4 || msgBuf == state_1))
         {
+            taskENTER_CRITICAL();
             current_state = state_yellow2;
+            taskEXIT_CRITICAL();
         }
         //from state_2 to state_1
         if(previous_state == state_2 && msgBuf == state_1)
         {
+            taskENTER_CRITICAL();
             current_state = state_yellowBoth;
+            taskEXIT_CRITICAL();
         }
         //from ped to state1
         if((previous_state == state_3 || previous_state == state_4) && msgBuf == state_1)
         {
+            taskENTER_CRITICAL();
             current_state = state_yellow1;
+            taskEXIT_CRITICAL();
         }
         //from ped to state2
         if((previous_state == state_3 || previous_state == state_4) && msgBuf == state_2)
         {
+            taskENTER_CRITICAL();
             current_state = state_yellow2;
+            taskEXIT_CRITICAL();
         }
 
         //2. start yellow timer
@@ -499,7 +522,9 @@ void RUN_STATES(void *argument)
 
     for(;;)
     {
+     /* taskENTER_CRITICAL( ); */
         current_state->runState(*States::spiHandle);
+     /* taskEXIT_CRITICAL( ); */
         vTaskDelayUntil( &xLastWakeTime, xPeriod );
     }
 
@@ -526,7 +551,9 @@ void PEDESTRIAN_BLINK(void *argument)
     /* Infinite loop */
     for(;;)
     {
+        taskENTER_CRITICAL();
         States::toggleWhite2();
+        taskEXIT_CRITICAL();
         vTaskDelayUntil( &xLastWakeTime, xPeriod );
     }
     /* USER CODE END PEDESTRIAN_BLINK */
@@ -661,6 +688,7 @@ void ISR_rtos(void *argument)
                     if(!pd2Waiting && !pd1Waiting && carLane == 0x00)
                     {
                         osSemaphoreRelease(blink2_semaphoreHandle);
+                        osTimerStop(TIM_orange_delayHandle);
                     }
                     osMessageQueuePut(STATE_QUEUEHandle, &state_3, 1, osWaitForever);
                     state_3->in_queue = true;
@@ -677,6 +705,7 @@ void ISR_rtos(void *argument)
                     if(!pd2Waiting && !pd1Waiting && carLane == 0x00)
                     {
                         osSemaphoreRelease(blink2_semaphoreHandle);
+                        osTimerStop(TIM_orange_delayHandle);
                     }
                     osMessageQueuePut(STATE_QUEUEHandle, &state_4, 1, osWaitForever);
                     state_4->in_queue = true;
@@ -711,7 +740,9 @@ void PEDESTRIAN_BLINK2(void *argument)
     /* Infinite loop */
     for(;;)
     {
+        taskENTER_CRITICAL();
         States::toggleWhite1();
+        taskEXIT_CRITICAL();
         vTaskDelayUntil( &xLastWakeTime, xPeriod );
     }
     /* USER CODE END PEDESTRIAN_BLINK2 */
