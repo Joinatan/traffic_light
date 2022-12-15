@@ -1,0 +1,208 @@
+\hypertarget{class_states}{}\doxysection{States Class Reference}
+\label{class_states}\index{States@{States}}
+
+
+{\ttfamily \#include $<$States.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_states_a77357dcd7269296068b166a86c035a4b}{States}} ()
+\item 
+\mbox{\Hypertarget{class_states_a0a5337568754c7032ab2b4d84228d6ef}\label{class_states_a0a5337568754c7032ab2b4d84228d6ef}} 
+{\bfseries States} (uint8\+\_\+t $\ast$\mbox{\hyperlink{class_states_a6ee01b18a88ca1f7fef4763c8336d876}{state}})
+\item 
+\mbox{\hyperlink{class_states_a10cd7b6a23f5d451a77e2eeeaa8c41f7}{States}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{class_states_a6ee01b18a88ca1f7fef4763c8336d876}{state}}, uint32\+\_\+t \mbox{\hyperlink{class_states_a64aee565770debfdf1d04b59f2056c39}{delay}})
+\item 
+\mbox{\hyperlink{class_states_a537d87c299ae42198d2f21f1bb046ec3}{$\sim$\+States}} ()
+\item 
+void \mbox{\hyperlink{class_states_a6d4fd5362920a0185e6f72bb1d66a107}{run\+State}} (SPI\+\_\+\+Handle\+Type\+Def h)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_states_a7eeb5b775a8bc65371815b9cf4c406e3}{yellow}} (SPI\+\_\+\+Handle\+Type\+Def h)
+\item 
+static void \mbox{\hyperlink{class_states_a16a6f312580e5b15d4aa26b04777211c}{toggle\+White1}} ()
+\item 
+static void \mbox{\hyperlink{class_states_ab47118fa4c86d5a0a84675fb0e18e76f}{toggle\+White2}} ()
+\item 
+static void \mbox{\hyperlink{class_states_a38cb91d6e89862bd6f2c807328a8bdfa}{shut\+Off\+White1}} ()
+\item 
+static void \mbox{\hyperlink{class_states_a0d0bcfe4333e511b24a0c1c2a257b6a7}{shut\+Off\+White2}} ()
+\item 
+static void \mbox{\hyperlink{class_states_aadaf5b5553deabdd58ea2a4254276c31}{test\+Toggle\+White}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t $\ast$ \mbox{\hyperlink{class_states_a6ee01b18a88ca1f7fef4763c8336d876}{state}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{class_states_a64aee565770debfdf1d04b59f2056c39}{delay}}
+\item 
+bool \mbox{\hyperlink{class_states_ad31dd41d6b80456b663496711c7beb83}{in\+\_\+queue}} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{class_states_a90975686a239f456547395b9ba945b71}{state1}} \mbox{[}$\,$\mbox{]} = \{0x0C, 0x09, 0x0C\}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{class_states_a8ea9f367a9c0e6cb02fe81f145504508}{state2}} \mbox{[}$\,$\mbox{]} = \{0x21, 0x0C, 0x09\}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{class_states_a6a94dd1f8653d9cfc7f23968adb9cb53}{state3}} \mbox{[}$\,$\mbox{]} = \{0x09, 0x09, 0x11\}
+\item 
+\mbox{\Hypertarget{class_states_aad33472b0e3f4f0f8e779cb4c797c261}\label{class_states_aad33472b0e3f4f0f8e779cb4c797c261}} 
+static uint8\+\_\+t {\bfseries state4} \mbox{[}$\,$\mbox{]} = \{0x09, 0x11, 0x09\}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{class_states_a03662b648e0f633061cf3a0b067dfa33}{state\+Yellow\+Both}} \mbox{[}$\,$\mbox{]} = \{0x12, 0x0a, 0x0a\}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{class_states_a83ab6f537e8d95bbb3ca485983b6de42}{state\+Yellow1}} \mbox{[}$\,$\mbox{]} = \{0x0a, 0x09, 0x0a\}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{class_states_a6728af0bfb5f71c16a59bb1f8d7a9a80}{state\+Yellow2}} \mbox{[}$\,$\mbox{]} = \{0x11, 0x0a, 0x09\}
+\item 
+static SPI\+\_\+\+Handle\+Type\+Def $\ast$ \mbox{\hyperlink{class_states_ae5510897177fcb7beac95e90206b2ca9}{spi\+Handle}} = \&hspi3
+\item 
+\mbox{\Hypertarget{class_states_a9a484744e2ffb394df824484e1255f07}\label{class_states_a9a484744e2ffb394df824484e1255f07}} 
+static uint8\+\_\+t {\bfseries white\+Led1}
+\item 
+\mbox{\Hypertarget{class_states_a81e30921cb9dfa0d86a45db13e388c50}\label{class_states_a81e30921cb9dfa0d86a45db13e388c50}} 
+static uint8\+\_\+t {\bfseries white\+Led2}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for the different states. Every state corresponds to a States-\/object. Also includes some static methods to control led like toggling white (blue) lights. The run\+State-\/method must be called to actually update the leds. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_states_a77357dcd7269296068b166a86c035a4b}\label{class_states_a77357dcd7269296068b166a86c035a4b}} 
+\index{States@{States}!States@{States}}
+\index{States@{States}!States@{States}}
+\doxysubsubsection{\texorpdfstring{States()}{States()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily States\+::\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor. \mbox{\Hypertarget{class_states_a10cd7b6a23f5d451a77e2eeeaa8c41f7}\label{class_states_a10cd7b6a23f5d451a77e2eeeaa8c41f7}} 
+\index{States@{States}!States@{States}}
+\index{States@{States}!States@{States}}
+\doxysubsubsection{\texorpdfstring{States()}{States()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily States\+::\+States (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{states,  }\item[{uint32\+\_\+t}]{delay }\end{DoxyParamCaption})}
+
+Constructor takes a state as uint8\+\_\+t array and a delay time in ms. \mbox{\Hypertarget{class_states_a537d87c299ae42198d2f21f1bb046ec3}\label{class_states_a537d87c299ae42198d2f21f1bb046ec3}} 
+\index{States@{States}!````~States@{$\sim$States}}
+\index{````~States@{$\sim$States}!States@{States}}
+\doxysubsubsection{\texorpdfstring{$\sim$States()}{~States()}}
+{\footnotesize\ttfamily States\+::$\sim$\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default destructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_states_a6d4fd5362920a0185e6f72bb1d66a107}\label{class_states_a6d4fd5362920a0185e6f72bb1d66a107}} 
+\index{States@{States}!runState@{runState}}
+\index{runState@{runState}!States@{States}}
+\doxysubsubsection{\texorpdfstring{runState()}{runState()}}
+{\footnotesize\ttfamily void States\+::run\+State (\begin{DoxyParamCaption}\item[{SPI\+\_\+\+Handle\+Type\+Def}]{h }\end{DoxyParamCaption})}
+
+Send state to \mbox{\hyperlink{class_update_led}{Update\+Led}} function where it\textquotesingle{}s sent to the LED-\/bytes via SPI. \mbox{\Hypertarget{class_states_a38cb91d6e89862bd6f2c807328a8bdfa}\label{class_states_a38cb91d6e89862bd6f2c807328a8bdfa}} 
+\index{States@{States}!shutOffWhite1@{shutOffWhite1}}
+\index{shutOffWhite1@{shutOffWhite1}!States@{States}}
+\doxysubsubsection{\texorpdfstring{shutOffWhite1()}{shutOffWhite1()}}
+{\footnotesize\ttfamily void States\+::shut\+Off\+White1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Shut of white (blue) lights pedestrian 1. \mbox{\Hypertarget{class_states_a0d0bcfe4333e511b24a0c1c2a257b6a7}\label{class_states_a0d0bcfe4333e511b24a0c1c2a257b6a7}} 
+\index{States@{States}!shutOffWhite2@{shutOffWhite2}}
+\index{shutOffWhite2@{shutOffWhite2}!States@{States}}
+\doxysubsubsection{\texorpdfstring{shutOffWhite2()}{shutOffWhite2()}}
+{\footnotesize\ttfamily void States\+::shut\+Off\+White2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Shut of white (blue) lights pedestrian 2. \mbox{\Hypertarget{class_states_aadaf5b5553deabdd58ea2a4254276c31}\label{class_states_aadaf5b5553deabdd58ea2a4254276c31}} 
+\index{States@{States}!testToggleWhite@{testToggleWhite}}
+\index{testToggleWhite@{testToggleWhite}!States@{States}}
+\doxysubsubsection{\texorpdfstring{testToggleWhite()}{testToggleWhite()}}
+{\footnotesize\ttfamily void States\+::test\+Toggle\+White (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Test function for toggle white(blue) lights. \mbox{\Hypertarget{class_states_a16a6f312580e5b15d4aa26b04777211c}\label{class_states_a16a6f312580e5b15d4aa26b04777211c}} 
+\index{States@{States}!toggleWhite1@{toggleWhite1}}
+\index{toggleWhite1@{toggleWhite1}!States@{States}}
+\doxysubsubsection{\texorpdfstring{toggleWhite1()}{toggleWhite1()}}
+{\footnotesize\ttfamily void States\+::toggle\+White1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Toggle white lights (blue) pedestrian 1. \mbox{\Hypertarget{class_states_ab47118fa4c86d5a0a84675fb0e18e76f}\label{class_states_ab47118fa4c86d5a0a84675fb0e18e76f}} 
+\index{States@{States}!toggleWhite2@{toggleWhite2}}
+\index{toggleWhite2@{toggleWhite2}!States@{States}}
+\doxysubsubsection{\texorpdfstring{toggleWhite2()}{toggleWhite2()}}
+{\footnotesize\ttfamily void States\+::toggle\+White2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Toggle white (blue) lights pedestrian 2. \mbox{\Hypertarget{class_states_a7eeb5b775a8bc65371815b9cf4c406e3}\label{class_states_a7eeb5b775a8bc65371815b9cf4c406e3}} 
+\index{States@{States}!yellow@{yellow}}
+\index{yellow@{yellow}!States@{States}}
+\doxysubsubsection{\texorpdfstring{yellow()}{yellow()}}
+{\footnotesize\ttfamily void States\+::yellow (\begin{DoxyParamCaption}\item[{SPI\+\_\+\+Handle\+Type\+Def}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Test function for yellow lights. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_states_a64aee565770debfdf1d04b59f2056c39}\label{class_states_a64aee565770debfdf1d04b59f2056c39}} 
+\index{States@{States}!delay@{delay}}
+\index{delay@{delay}!States@{States}}
+\doxysubsubsection{\texorpdfstring{delay}{delay}}
+{\footnotesize\ttfamily uint32\+\_\+t States\+::delay}
+
+Duration of state. Used for RTOS-\/timers. \mbox{\Hypertarget{class_states_ad31dd41d6b80456b663496711c7beb83}\label{class_states_ad31dd41d6b80456b663496711c7beb83}} 
+\index{States@{States}!in\_queue@{in\_queue}}
+\index{in\_queue@{in\_queue}!States@{States}}
+\doxysubsubsection{\texorpdfstring{in\_queue}{in\_queue}}
+{\footnotesize\ttfamily bool States\+::in\+\_\+queue = false}
+
+Tells wheter the state is in RTOS-\/queue or not. \mbox{\Hypertarget{class_states_ae5510897177fcb7beac95e90206b2ca9}\label{class_states_ae5510897177fcb7beac95e90206b2ca9}} 
+\index{States@{States}!spiHandle@{spiHandle}}
+\index{spiHandle@{spiHandle}!States@{States}}
+\doxysubsubsection{\texorpdfstring{spiHandle}{spiHandle}}
+{\footnotesize\ttfamily SPI\+\_\+\+Handle\+Type\+Def $\ast$ States\+::spi\+Handle = \&hspi3\hspace{0.3cm}{\ttfamily [static]}}
+
+Handle to SPI interface communicating with shift registers. \mbox{\Hypertarget{class_states_a6ee01b18a88ca1f7fef4763c8336d876}\label{class_states_a6ee01b18a88ca1f7fef4763c8336d876}} 
+\index{States@{States}!state@{state}}
+\index{state@{state}!States@{States}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily const uint8\+\_\+t$\ast$ States\+::state}
+
+Each object has an associated state. \mbox{\Hypertarget{class_states_a90975686a239f456547395b9ba945b71}\label{class_states_a90975686a239f456547395b9ba945b71}} 
+\index{States@{States}!state1@{state1}}
+\index{state1@{state1}!States@{States}}
+\doxysubsubsection{\texorpdfstring{state1}{state1}}
+{\footnotesize\ttfamily uint8\+\_\+t States\+::state1 = \{0x0C, 0x09, 0x0C\}\hspace{0.3cm}{\ttfamily [static]}}
+
+Car lanes 1 and 3 green. \mbox{\Hypertarget{class_states_a8ea9f367a9c0e6cb02fe81f145504508}\label{class_states_a8ea9f367a9c0e6cb02fe81f145504508}} 
+\index{States@{States}!state2@{state2}}
+\index{state2@{state2}!States@{States}}
+\doxysubsubsection{\texorpdfstring{state2}{state2}}
+{\footnotesize\ttfamily uint8\+\_\+t States\+::state2 = \{0x21, 0x0C, 0x09\}\hspace{0.3cm}{\ttfamily [static]}}
+
+Car lanes 2 and 4 green. \mbox{\Hypertarget{class_states_a6a94dd1f8653d9cfc7f23968adb9cb53}\label{class_states_a6a94dd1f8653d9cfc7f23968adb9cb53}} 
+\index{States@{States}!state3@{state3}}
+\index{state3@{state3}!States@{States}}
+\doxysubsubsection{\texorpdfstring{state3}{state3}}
+{\footnotesize\ttfamily uint8\+\_\+t States\+::state3 = \{0x09, 0x09, 0x11\}\hspace{0.3cm}{\ttfamily [static]}}
+
+Car lanes 2 and 4 green. \mbox{\Hypertarget{class_states_a83ab6f537e8d95bbb3ca485983b6de42}\label{class_states_a83ab6f537e8d95bbb3ca485983b6de42}} 
+\index{States@{States}!stateYellow1@{stateYellow1}}
+\index{stateYellow1@{stateYellow1}!States@{States}}
+\doxysubsubsection{\texorpdfstring{stateYellow1}{stateYellow1}}
+{\footnotesize\ttfamily uint8\+\_\+t States\+::state\+Yellow1 = \{0x0a, 0x09, 0x0a\}\hspace{0.3cm}{\ttfamily [static]}}
+
+State for car lane 1 yellow. \mbox{\Hypertarget{class_states_a6728af0bfb5f71c16a59bb1f8d7a9a80}\label{class_states_a6728af0bfb5f71c16a59bb1f8d7a9a80}} 
+\index{States@{States}!stateYellow2@{stateYellow2}}
+\index{stateYellow2@{stateYellow2}!States@{States}}
+\doxysubsubsection{\texorpdfstring{stateYellow2}{stateYellow2}}
+{\footnotesize\ttfamily uint8\+\_\+t States\+::state\+Yellow2 = \{0x11, 0x0a, 0x09\}\hspace{0.3cm}{\ttfamily [static]}}
+
+State for car lane 2 yellow. \mbox{\Hypertarget{class_states_a03662b648e0f633061cf3a0b067dfa33}\label{class_states_a03662b648e0f633061cf3a0b067dfa33}} 
+\index{States@{States}!stateYellowBoth@{stateYellowBoth}}
+\index{stateYellowBoth@{stateYellowBoth}!States@{States}}
+\doxysubsubsection{\texorpdfstring{stateYellowBoth}{stateYellowBoth}}
+{\footnotesize\ttfamily uint8\+\_\+t States\+::state\+Yellow\+Both = \{0x12, 0x0a, 0x0a\}\hspace{0.3cm}{\ttfamily [static]}}
+
+State for both car lanes yellow. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Inc/States.\+h\item 
+Src/States.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,323 @@
+\hypertarget{freertos_8cpp}{}\doxysection{Src/freertos.cpp File Reference}
+\label{freertos_8cpp}\index{Src/freertos.cpp@{Src/freertos.cpp}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{freertos_8cpp_a99d0fdb0434092bcb24d9c9af917e4e9}{Start\+Default\+Task}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the default\+Task thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_a2721eb8b0fc61953c7bbf85545f95f03}{UPDATE\+\_\+\+STATE}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the UPDATE\+\_\+\+STATE\+\_\+\+TA thread. Calculates the next state based on the STATE\+\_\+\+QUEUE. If the STATE\+\_\+\+QUEUE is empty it starts the BASE\+\_\+\+TASK. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_a6a0e4e86a1bf533f1f233b1f6e8b0b3a}{RUN\+\_\+\+YELLOW}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the YELLOW\+\_\+\+TASK thread. Runs the yellow states. Calculates which of the car lanes should be yellow base on previous and msg\+Bug(next state) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_a0d3650f870d4011203c57a05350c3788}{RUN\+\_\+\+STATES}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the STATES\+\_\+\+TASK thread. Updates the leds every 100 ms by calling current\+\_\+state-\/\texorpdfstring{$>$}{>}run\+State(). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_a9218fbd28aaca38f4d5ca70ba5757fa4}{PEDESTRIAN\+\_\+\+BLINK1}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the PD\+\_\+\+TASK1 thread. Toggles pedestrian white (blue) every toggle\+Freq ms. Gets terminated when pedestrian 1 is green and resumed when button is pressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_a489e0e7a30e9a7a137d309bcc78524f2}{ISR\+\_\+rtos}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the ISR\+\_\+task thread. ISR from EXTI releses ISR\+\_\+semaphore and the task runs one loop. Adds states to STATE\+\_\+\+QUEUE and updates car\+Lane. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_a0db847951313aff5c6a797295a4e50a9}{PEDESTRIAN\+\_\+\+BLINK2}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the PEDESTRIAN\+\_\+\+TASK thread. Toggles pedestrian 2 white (blue) lights by calling toggle\+White2 with toggle\+Freq frequency. Gets terminated when corresponding pedestrian light gets green and resumed when button is pressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_a1bf6fb04513733ee01f7de0cf590c533}{BASE}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the BASE\+\_\+\+TASK thread. Loops through the states array which consits of the base states. Start timer to release semaphore so UPDATE\+\_\+\+STATE tast can run once in a while. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_a7587648831f250a18299399e698ac85a}{update\+\_\+state\+\_\+delay}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Delay callback function that releases a semaphore that blocks the UPDATE\+\_\+\+STATE task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_af4b69417e1d03ec573899908bcee20b2}{green\+\_\+delay}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Delay for timing in the BASE task. Switch state when timer ends. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_ad9ca8ab42ada39a20b8609f0e4adf5eb}{yellow\+\_\+delay}} (void $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Callback function for TIM\+\_\+yellow which gets started from yellow task. Releases semaphore so UPDATE\+\_\+\+STATE can continue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_abade755e13d07c10889ae83143656158}{MX\+\_\+\+FREERTOS\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8cpp_a0cd91fd3a9608559c2a87a8ba6cba55f}{HAL\+\_\+\+GPIO\+\_\+\+EXTI\+\_\+\+Callback}} (uint16\+\_\+t GPIO\+\_\+\+Pin)
+\begin{DoxyCompactList}\small\item\em EXTI callback function. Releases the semaphore and stores the pressed button i gpio-\/varable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{freertos_8cpp_aacd61ac1bbac156259774e474f6c501f}\label{freertos_8cpp_aacd61ac1bbac156259774e474f6c501f}} 
+uint32\+\_\+t {\bfseries green\+Delay} = 4000
+\begin{DoxyCompactList}\small\item\em Delay for how often green of car lanes switch when there\textquotesingle{}s no pedestrian in ms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_a4fdd2968a38cf6b3344d0c9ce29f3b27}\label{freertos_8cpp_a4fdd2968a38cf6b3344d0c9ce29f3b27}} 
+uint32\+\_\+t {\bfseries toggle\+Freq} = 400
+\begin{DoxyCompactList}\small\item\em How fast the white (blue) lights blink in ms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_aa42e6e3c5fb6a18cd287a0167a150602}\label{freertos_8cpp_aa42e6e3c5fb6a18cd287a0167a150602}} 
+uint32\+\_\+t {\bfseries red\+Delay\+Max} = 1000
+\begin{DoxyCompactList}\small\item\em How fast a red signal switches to green if a car is waiting in ms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_a6b59f75369700988fa3f2dfa5c225354}\label{freertos_8cpp_a6b59f75369700988fa3f2dfa5c225354}} 
+uint32\+\_\+t {\bfseries pedestrian\+Delay} = 500
+\begin{DoxyCompactList}\small\item\em Max time for when a red pedestrian signal switches to green if a pedestrian is waiting in ms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_ae8af103831a49353d21ee13fa606a13f}\label{freertos_8cpp_ae8af103831a49353d21ee13fa606a13f}} 
+uint32\+\_\+t {\bfseries orange\+Delay} = 1000
+\begin{DoxyCompactList}\small\item\em How long the orange signal is in ms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_a30db9cbd5592bcc1e9c0132e03d22021}\label{freertos_8cpp_a30db9cbd5592bcc1e9c0132e03d22021}} 
+uint32\+\_\+t {\bfseries walking\+Delay} = 8000
+\begin{DoxyCompactList}\small\item\em How long time a pedestrian signal is green in ms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_ab3b587bea3112ac416c7ed066fc32e9e}\label{freertos_8cpp_ab3b587bea3112ac416c7ed066fc32e9e}} 
+\mbox{\hyperlink{class_states}{States}} $\ast$ {\bfseries msg\+Buf}
+\begin{DoxyCompactList}\small\item\em A buffer to use when dequeing the STATE\+\_\+\+QUEUE. Next states gets put here. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_a77a25da80d3640377e03055bb2cdf9d2}\label{freertos_8cpp_a77a25da80d3640377e03055bb2cdf9d2}} 
+\mbox{\hyperlink{class_states}{States}} $\ast$ {\bfseries current\+\_\+state}
+\begin{DoxyCompactList}\small\item\em The current state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_a159c8aefad6d11165d0370d5de93d6be}\label{freertos_8cpp_a159c8aefad6d11165d0370d5de93d6be}} 
+\mbox{\hyperlink{class_states}{States}} $\ast$ {\bfseries previous\+\_\+state}
+\begin{DoxyCompactList}\small\item\em The previous state. Sometimes needed for calculating the next state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_a3d6480718595b79b1bcffcd4a2465149}\label{freertos_8cpp_a3d6480718595b79b1bcffcd4a2465149}} 
+\mbox{\hyperlink{class_states}{States}} $\ast$ {\bfseries base\+\_\+states} \mbox{[}4\mbox{]} = \{state\+\_\+yellow\+Both, state\+\_\+1, state\+\_\+yellow\+Both, state\+\_\+2\}
+\begin{DoxyCompactList}\small\item\em An array to loop through when nothing happens. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_af27e3188294c2df66d975b74a09c001d}\label{freertos_8cpp_af27e3188294c2df66d975b74a09c001d}} 
+uint8\+\_\+t {\bfseries i} = 1
+\begin{DoxyCompactList}\small\item\em Counter for base states. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_a45913af26bb6b39c76c6d391d60a5ab8}\label{freertos_8cpp_a45913af26bb6b39c76c6d391d60a5ab8}} 
+volatile uint16\+\_\+t {\bfseries gpio} = 0
+\begin{DoxyCompactList}\small\item\em Variable to store which button was pressed. Set from ISR. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_ada15aa7f1d0135cdce92b1e56922a44e}\label{freertos_8cpp_ada15aa7f1d0135cdce92b1e56922a44e}} 
+volatile bool {\bfseries pd1\+Waiting} = false
+\begin{DoxyCompactList}\small\item\em Variable to keep track if a pedestrian i waiting. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_af75f149548a0502e5d19072adececb0e}\label{freertos_8cpp_af75f149548a0502e5d19072adececb0e}} 
+volatile bool {\bfseries pd2\+Waiting} = false
+\begin{DoxyCompactList}\small\item\em Variable to keep track if a pedestrian i waiting. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_a2911394d28f49ddb66b9a37a1618ad45}\label{freertos_8cpp_a2911394d28f49ddb66b9a37a1618ad45}} 
+volatile uint8\+\_\+t {\bfseries car\+Lane} = 0x00
+\begin{DoxyCompactList}\small\item\em Bit 0 and 1 indicates if there are any cars in lane 1 respective 2. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_acc0b27a6740f03639727be452f1e6b83}\label{freertos_8cpp_acc0b27a6740f03639727be452f1e6b83}} 
+uint8\+\_\+t {\bfseries prio} = 1
+\begin{DoxyCompactList}\small\item\em Just a dummy variable to put in rtos-\/queue prio argument. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{freertos_8cpp_ab034a2042cc1411cce9d00bbd55ec1a3}\label{freertos_8cpp_ab034a2042cc1411cce9d00bbd55ec1a3}} 
+os\+Thread\+Id {\bfseries PEDESTRIAN\+\_\+\+BLINK\+\_\+\+ID}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File Name \+: freertos.\+c Description \+: Code for freertos applications
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2022 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{freertos_8cpp_a1bf6fb04513733ee01f7de0cf590c533}\label{freertos_8cpp_a1bf6fb04513733ee01f7de0cf590c533}} 
+\index{freertos.cpp@{freertos.cpp}!BASE@{BASE}}
+\index{BASE@{BASE}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{BASE()}{BASE()}}
+{\footnotesize\ttfamily void BASE (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the BASE\+\_\+\+TASK thread. Loops through the states array which consits of the base states. Start timer to release semaphore so UPDATE\+\_\+\+STATE tast can run once in a while. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{freertos_8cpp_af4b69417e1d03ec573899908bcee20b2}\label{freertos_8cpp_af4b69417e1d03ec573899908bcee20b2}} 
+\index{freertos.cpp@{freertos.cpp}!green\_delay@{green\_delay}}
+\index{green\_delay@{green\_delay}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{green\_delay()}{green\_delay()}}
+{\footnotesize\ttfamily void green\+\_\+delay (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Delay for timing in the BASE task. Switch state when timer ends. 
+
+Used for timing of each car lanes green time during BASE\+\_\+\+TASK. \mbox{\Hypertarget{freertos_8cpp_a0cd91fd3a9608559c2a87a8ba6cba55f}\label{freertos_8cpp_a0cd91fd3a9608559c2a87a8ba6cba55f}} 
+\index{freertos.cpp@{freertos.cpp}!HAL\_GPIO\_EXTI\_Callback@{HAL\_GPIO\_EXTI\_Callback}}
+\index{HAL\_GPIO\_EXTI\_Callback@{HAL\_GPIO\_EXTI\_Callback}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{HAL\_GPIO\_EXTI\_Callback()}{HAL\_GPIO\_EXTI\_Callback()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+GPIO\+\_\+\+EXTI\+\_\+\+Callback (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{GPIO\+\_\+\+Pin }\end{DoxyParamCaption})}
+
+
+
+EXTI callback function. Releases the semaphore and stores the pressed button i gpio-\/varable. 
+
+Very short function so the rtos doesn\textquotesingle{}t go into starvation. \mbox{\Hypertarget{freertos_8cpp_a489e0e7a30e9a7a137d309bcc78524f2}\label{freertos_8cpp_a489e0e7a30e9a7a137d309bcc78524f2}} 
+\index{freertos.cpp@{freertos.cpp}!ISR\_rtos@{ISR\_rtos}}
+\index{ISR\_rtos@{ISR\_rtos}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{ISR\_rtos()}{ISR\_rtos()}}
+{\footnotesize\ttfamily void ISR\+\_\+rtos (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the ISR\+\_\+task thread. ISR from EXTI releses ISR\+\_\+semaphore and the task runs one loop. Adds states to STATE\+\_\+\+QUEUE and updates car\+Lane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{freertos_8cpp_abade755e13d07c10889ae83143656158}\label{freertos_8cpp_abade755e13d07c10889ae83143656158}} 
+\index{freertos.cpp@{freertos.cpp}!MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}}
+\index{MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{MX\_FREERTOS\_Init()}{MX\_FREERTOS\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+FREERTOS\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Free\+RTOS initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{freertos_8cpp_a9218fbd28aaca38f4d5ca70ba5757fa4}\label{freertos_8cpp_a9218fbd28aaca38f4d5ca70ba5757fa4}} 
+\index{freertos.cpp@{freertos.cpp}!PEDESTRIAN\_BLINK1@{PEDESTRIAN\_BLINK1}}
+\index{PEDESTRIAN\_BLINK1@{PEDESTRIAN\_BLINK1}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{PEDESTRIAN\_BLINK1()}{PEDESTRIAN\_BLINK1()}}
+{\footnotesize\ttfamily void PEDESTRIAN\+\_\+\+BLINK1 (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the PD\+\_\+\+TASK1 thread. Toggles pedestrian white (blue) every toggle\+Freq ms. Gets terminated when pedestrian 1 is green and resumed when button is pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{freertos_8cpp_a0db847951313aff5c6a797295a4e50a9}\label{freertos_8cpp_a0db847951313aff5c6a797295a4e50a9}} 
+\index{freertos.cpp@{freertos.cpp}!PEDESTRIAN\_BLINK2@{PEDESTRIAN\_BLINK2}}
+\index{PEDESTRIAN\_BLINK2@{PEDESTRIAN\_BLINK2}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{PEDESTRIAN\_BLINK2()}{PEDESTRIAN\_BLINK2()}}
+{\footnotesize\ttfamily void PEDESTRIAN\+\_\+\+BLINK2 (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the PEDESTRIAN\+\_\+\+TASK thread. Toggles pedestrian 2 white (blue) lights by calling toggle\+White2 with toggle\+Freq frequency. Gets terminated when corresponding pedestrian light gets green and resumed when button is pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{freertos_8cpp_a0d3650f870d4011203c57a05350c3788}\label{freertos_8cpp_a0d3650f870d4011203c57a05350c3788}} 
+\index{freertos.cpp@{freertos.cpp}!RUN\_STATES@{RUN\_STATES}}
+\index{RUN\_STATES@{RUN\_STATES}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{RUN\_STATES()}{RUN\_STATES()}}
+{\footnotesize\ttfamily void RUN\+\_\+\+STATES (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the STATES\+\_\+\+TASK thread. Updates the leds every 100 ms by calling current\+\_\+state-\/\texorpdfstring{$>$}{>}run\+State(). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{freertos_8cpp_a6a0e4e86a1bf533f1f233b1f6e8b0b3a}\label{freertos_8cpp_a6a0e4e86a1bf533f1f233b1f6e8b0b3a}} 
+\index{freertos.cpp@{freertos.cpp}!RUN\_YELLOW@{RUN\_YELLOW}}
+\index{RUN\_YELLOW@{RUN\_YELLOW}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{RUN\_YELLOW()}{RUN\_YELLOW()}}
+{\footnotesize\ttfamily void RUN\+\_\+\+YELLOW (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the YELLOW\+\_\+\+TASK thread. Runs the yellow states. Calculates which of the car lanes should be yellow base on previous and msg\+Bug(next state) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{freertos_8cpp_a99d0fdb0434092bcb24d9c9af917e4e9}\label{freertos_8cpp_a99d0fdb0434092bcb24d9c9af917e4e9}} 
+\index{freertos.cpp@{freertos.cpp}!StartDefaultTask@{StartDefaultTask}}
+\index{StartDefaultTask@{StartDefaultTask}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{StartDefaultTask()}{StartDefaultTask()}}
+{\footnotesize\ttfamily void Start\+Default\+Task (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the default\+Task thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{freertos_8cpp_a2721eb8b0fc61953c7bbf85545f95f03}\label{freertos_8cpp_a2721eb8b0fc61953c7bbf85545f95f03}} 
+\index{freertos.cpp@{freertos.cpp}!UPDATE\_STATE@{UPDATE\_STATE}}
+\index{UPDATE\_STATE@{UPDATE\_STATE}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{UPDATE\_STATE()}{UPDATE\_STATE()}}
+{\footnotesize\ttfamily void UPDATE\+\_\+\+STATE (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the UPDATE\+\_\+\+STATE\+\_\+\+TA thread. Calculates the next state based on the STATE\+\_\+\+QUEUE. If the STATE\+\_\+\+QUEUE is empty it starts the BASE\+\_\+\+TASK. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{freertos_8cpp_a7587648831f250a18299399e698ac85a}\label{freertos_8cpp_a7587648831f250a18299399e698ac85a}} 
+\index{freertos.cpp@{freertos.cpp}!update\_state\_delay@{update\_state\_delay}}
+\index{update\_state\_delay@{update\_state\_delay}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_state\_delay()}{update\_state\_delay()}}
+{\footnotesize\ttfamily void update\+\_\+state\+\_\+delay (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Delay callback function that releases a semaphore that blocks the UPDATE\+\_\+\+STATE task. 
+
+Manages so the UPDATE\+\_\+\+STATE only runs att specific times. \mbox{\Hypertarget{freertos_8cpp_ad9ca8ab42ada39a20b8609f0e4adf5eb}\label{freertos_8cpp_ad9ca8ab42ada39a20b8609f0e4adf5eb}} 
+\index{freertos.cpp@{freertos.cpp}!yellow\_delay@{yellow\_delay}}
+\index{yellow\_delay@{yellow\_delay}!freertos.cpp@{freertos.cpp}}
+\doxysubsubsection{\texorpdfstring{yellow\_delay()}{yellow\_delay()}}
+{\footnotesize\ttfamily void yellow\+\_\+delay (\begin{DoxyParamCaption}\item[{void $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Callback function for TIM\+\_\+yellow which gets started from yellow task. Releases semaphore so UPDATE\+\_\+\+STATE can continue. 
+
+Used for timing of yellow state 
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}

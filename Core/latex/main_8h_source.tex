@@ -1,0 +1,95 @@
+\hypertarget{main_8h_source}{}\doxysection{main.\+h}
+\label{main_8h_source}\index{Inc/main.h@{Inc/main.h}}
+\mbox{\hyperlink{main_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* USER CODE BEGIN Header */}}
+\DoxyCodeLine{19 \textcolor{comment}{/* USER CODE END Header */}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{comment}{/* Define to prevent recursive inclusion -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifndef \_\_MAIN\_H}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define \_\_MAIN\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{26 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{comment}{/* Includes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}stm32l4xx\_hal.h"{}}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{comment}{/* Private includes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{33 \textcolor{comment}{/* USER CODE BEGIN Includes */}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{/* USER CODE END Includes */}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{/* Exported types -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{38 \textcolor{comment}{/* USER CODE BEGIN ET */}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{comment}{/* USER CODE END ET */}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{/* Exported constants -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{43 \textcolor{comment}{/* USER CODE BEGIN EC */}}
+\DoxyCodeLine{44 \textcolor{keyword}{extern} uint8\_t LEDS[3];}
+\DoxyCodeLine{45 \textcolor{keyword}{extern} SPI\_HandleTypeDef hspi3;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{comment}{/* USER CODE END EC */}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{comment}{/* Exported macro -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{51 \textcolor{comment}{/* USER CODE BEGIN EM */}}
+\DoxyCodeLine{52 \textcolor{comment}{/* \#define RUN\_TEST\_PROGRAM */}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{comment}{/* USER CODE END EM */}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{comment}{/* Exported functions prototypes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{57 \textcolor{keywordtype}{void} \mbox{\hyperlink{main_8h_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{comment}{/* USER CODE BEGIN EFP */}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{comment}{/* USER CODE END EFP */}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{comment}{/* Private defines -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define USART\_TX\_Pin GPIO\_PIN\_2}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define USART\_TX\_GPIO\_Port GPIOA}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define USART\_RX\_Pin GPIO\_PIN\_3}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define USART\_RX\_GPIO\_Port GPIOA}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define LD2\_Pin GPIO\_PIN\_5}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define LD2\_GPIO\_Port GPIOA}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define CAR1\_Pin GPIO\_PIN\_4}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define CAR1\_GPIO\_Port GPIOC}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define CAR1\_EXTI\_IRQn EXTI4\_IRQn}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define SHIFT\_REG\_STORE\_CLK\_Pin GPIO\_PIN\_12}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define SHIFT\_REG\_STORE\_CLK\_GPIO\_Port GPIOB}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define CAR2\_Pin GPIO\_PIN\_13}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define CAR2\_GPIO\_Port GPIOB}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define CAR2\_EXTI\_IRQn EXTI15\_10\_IRQn}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define CAR3\_Pin GPIO\_PIN\_14}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define CAR3\_GPIO\_Port GPIOB}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define CAR3\_EXTI\_IRQn EXTI15\_10\_IRQn}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define SHIFT\_REG\_ENABLE\_Pin GPIO\_PIN\_7}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define SHIFT\_REG\_ENABLE\_GPIO\_Port GPIOC}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define SHIFT\_REG\_RESET\_Pin GPIO\_PIN\_9}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define SHIFT\_REG\_RESET\_GPIO\_Port GPIOA}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define CAR4\_Pin GPIO\_PIN\_10}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define CAR4\_GPIO\_Port GPIOA}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#define CAR4\_EXTI\_IRQn EXTI15\_10\_IRQn}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define TMS\_Pin GPIO\_PIN\_13}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#define TMS\_GPIO\_Port GPIOA}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define TCK\_Pin GPIO\_PIN\_14}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define TCK\_GPIO\_Port GPIOA}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define PEDESTRIAN1\_Pin GPIO\_PIN\_15}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define PEDESTRIAN1\_GPIO\_Port GPIOA}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#define PEDESTRIAN1\_EXTI\_IRQn EXTI15\_10\_IRQn}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define PEDESTRIAN2\_Pin GPIO\_PIN\_7}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#define PEDESTRIAN2\_GPIO\_Port GPIOB}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define PEDESTRIAN2\_EXTI\_IRQn EXTI9\_5\_IRQn}}
+\DoxyCodeLine{98 \textcolor{comment}{/* USER CODE BEGIN Private defines */}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{comment}{/* USER CODE END Private defines */}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{103 \}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_MAIN\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,155 @@
+\hypertarget{main_8h}{}\doxysection{Inc/main.h File Reference}
+\label{main_8h}\index{Inc/main.h@{Inc/main.h}}
+
+
+\+: Header for main.\+c file. This file contains the common defines of the application.  
+
+
+{\ttfamily \#include \char`\"{}stm32l4xx\+\_\+hal.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8h_a5644600bf1ed996688dd87dc3f88526c}\label{main_8h_a5644600bf1ed996688dd87dc3f88526c}} 
+\#define {\bfseries USART\+\_\+\+TX\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+2
+\item 
+\mbox{\Hypertarget{main_8h_a79a3e098f5d738c55a12e4272b7b2f84}\label{main_8h_a79a3e098f5d738c55a12e4272b7b2f84}} 
+\#define {\bfseries USART\+\_\+\+TX\+\_\+\+GPIO\+\_\+\+Port}~GPIOA
+\item 
+\mbox{\Hypertarget{main_8h_ac93b92f1334823df872908c845c71afc}\label{main_8h_ac93b92f1334823df872908c845c71afc}} 
+\#define {\bfseries USART\+\_\+\+RX\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+3
+\item 
+\mbox{\Hypertarget{main_8h_aae451289f2eda1c04e3bf6d6120b6c0b}\label{main_8h_aae451289f2eda1c04e3bf6d6120b6c0b}} 
+\#define {\bfseries USART\+\_\+\+RX\+\_\+\+GPIO\+\_\+\+Port}~GPIOA
+\item 
+\mbox{\Hypertarget{main_8h_af17a94dd613cff35c699b06c7c6a2820}\label{main_8h_af17a94dd613cff35c699b06c7c6a2820}} 
+\#define {\bfseries LD2\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+5
+\item 
+\mbox{\Hypertarget{main_8h_a5aff6ddf7fe557e53b048115ad322aa0}\label{main_8h_a5aff6ddf7fe557e53b048115ad322aa0}} 
+\#define {\bfseries LD2\+\_\+\+GPIO\+\_\+\+Port}~GPIOA
+\item 
+\mbox{\Hypertarget{main_8h_af94f3d19bd3ac75791b72439207dd8c7}\label{main_8h_af94f3d19bd3ac75791b72439207dd8c7}} 
+\#define {\bfseries CAR1\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+4
+\item 
+\mbox{\Hypertarget{main_8h_ae38303f5d127582ac99f13eafe51702f}\label{main_8h_ae38303f5d127582ac99f13eafe51702f}} 
+\#define {\bfseries CAR1\+\_\+\+GPIO\+\_\+\+Port}~GPIOC
+\item 
+\mbox{\Hypertarget{main_8h_a85afa746d67021c71322fb955ddbd9b5}\label{main_8h_a85afa746d67021c71322fb955ddbd9b5}} 
+\#define {\bfseries CAR1\+\_\+\+EXTI\+\_\+\+IRQn}~EXTI4\+\_\+\+IRQn
+\item 
+\mbox{\Hypertarget{main_8h_a6b7f139e49a59d95b44aabbe87916ef4}\label{main_8h_a6b7f139e49a59d95b44aabbe87916ef4}} 
+\#define {\bfseries SHIFT\+\_\+\+REG\+\_\+\+STORE\+\_\+\+CLK\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+12
+\item 
+\mbox{\Hypertarget{main_8h_a7edace3e8d23e6e05f1478c84ee3fd07}\label{main_8h_a7edace3e8d23e6e05f1478c84ee3fd07}} 
+\#define {\bfseries SHIFT\+\_\+\+REG\+\_\+\+STORE\+\_\+\+CLK\+\_\+\+GPIO\+\_\+\+Port}~GPIOB
+\item 
+\mbox{\Hypertarget{main_8h_aeafb952d2f87792dac7e10456e81c88d}\label{main_8h_aeafb952d2f87792dac7e10456e81c88d}} 
+\#define {\bfseries CAR2\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+13
+\item 
+\mbox{\Hypertarget{main_8h_a0d76f5a711ebfb7514bb1c37f0cd42ed}\label{main_8h_a0d76f5a711ebfb7514bb1c37f0cd42ed}} 
+\#define {\bfseries CAR2\+\_\+\+GPIO\+\_\+\+Port}~GPIOB
+\item 
+\mbox{\Hypertarget{main_8h_a31e7d4e444429b0f95da05759b80b49d}\label{main_8h_a31e7d4e444429b0f95da05759b80b49d}} 
+\#define {\bfseries CAR2\+\_\+\+EXTI\+\_\+\+IRQn}~EXTI15\+\_\+10\+\_\+\+IRQn
+\item 
+\mbox{\Hypertarget{main_8h_a8a6ce6cf7e55ad24722a8ef9cdee5809}\label{main_8h_a8a6ce6cf7e55ad24722a8ef9cdee5809}} 
+\#define {\bfseries CAR3\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+14
+\item 
+\mbox{\Hypertarget{main_8h_a5161d4b1bd9be7945274ef5184a73c8a}\label{main_8h_a5161d4b1bd9be7945274ef5184a73c8a}} 
+\#define {\bfseries CAR3\+\_\+\+GPIO\+\_\+\+Port}~GPIOB
+\item 
+\mbox{\Hypertarget{main_8h_a1e5fe30b11494f74afeccaadff52983e}\label{main_8h_a1e5fe30b11494f74afeccaadff52983e}} 
+\#define {\bfseries CAR3\+\_\+\+EXTI\+\_\+\+IRQn}~EXTI15\+\_\+10\+\_\+\+IRQn
+\item 
+\mbox{\Hypertarget{main_8h_a1cf054e81ec71fc76965f87d46fa7076}\label{main_8h_a1cf054e81ec71fc76965f87d46fa7076}} 
+\#define {\bfseries SHIFT\+\_\+\+REG\+\_\+\+ENABLE\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+7
+\item 
+\mbox{\Hypertarget{main_8h_a71b743e3ed80c4d7147a3919c4c4c0bf}\label{main_8h_a71b743e3ed80c4d7147a3919c4c4c0bf}} 
+\#define {\bfseries SHIFT\+\_\+\+REG\+\_\+\+ENABLE\+\_\+\+GPIO\+\_\+\+Port}~GPIOC
+\item 
+\mbox{\Hypertarget{main_8h_a17e8dad299e2e6da58347014daa69f83}\label{main_8h_a17e8dad299e2e6da58347014daa69f83}} 
+\#define {\bfseries SHIFT\+\_\+\+REG\+\_\+\+RESET\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+9
+\item 
+\mbox{\Hypertarget{main_8h_a1faf92043a79e7502d775213dac68832}\label{main_8h_a1faf92043a79e7502d775213dac68832}} 
+\#define {\bfseries SHIFT\+\_\+\+REG\+\_\+\+RESET\+\_\+\+GPIO\+\_\+\+Port}~GPIOA
+\item 
+\mbox{\Hypertarget{main_8h_a2d5dd3e87d66cfc79343f48b42a25150}\label{main_8h_a2d5dd3e87d66cfc79343f48b42a25150}} 
+\#define {\bfseries CAR4\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+10
+\item 
+\mbox{\Hypertarget{main_8h_a150ec4a51632115ab07038b0eabaa6ee}\label{main_8h_a150ec4a51632115ab07038b0eabaa6ee}} 
+\#define {\bfseries CAR4\+\_\+\+GPIO\+\_\+\+Port}~GPIOA
+\item 
+\mbox{\Hypertarget{main_8h_aca96cf01f0e6317ffd22a09ed87fc97b}\label{main_8h_aca96cf01f0e6317ffd22a09ed87fc97b}} 
+\#define {\bfseries CAR4\+\_\+\+EXTI\+\_\+\+IRQn}~EXTI15\+\_\+10\+\_\+\+IRQn
+\item 
+\mbox{\Hypertarget{main_8h_af2c8a7a0746106e52f6f415b8921c21b}\label{main_8h_af2c8a7a0746106e52f6f415b8921c21b}} 
+\#define {\bfseries TMS\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+13
+\item 
+\mbox{\Hypertarget{main_8h_affce477a22cc940d3962932cb33ec422}\label{main_8h_affce477a22cc940d3962932cb33ec422}} 
+\#define {\bfseries TMS\+\_\+\+GPIO\+\_\+\+Port}~GPIOA
+\item 
+\mbox{\Hypertarget{main_8h_a9e21d9bed16b0275ff16a864ffb2ab6e}\label{main_8h_a9e21d9bed16b0275ff16a864ffb2ab6e}} 
+\#define {\bfseries TCK\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+14
+\item 
+\mbox{\Hypertarget{main_8h_a1541f23b870848a43f0274857badd175}\label{main_8h_a1541f23b870848a43f0274857badd175}} 
+\#define {\bfseries TCK\+\_\+\+GPIO\+\_\+\+Port}~GPIOA
+\item 
+\mbox{\Hypertarget{main_8h_a52354f04e7dc44c655c72a79f6bb3176}\label{main_8h_a52354f04e7dc44c655c72a79f6bb3176}} 
+\#define {\bfseries PEDESTRIAN1\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+15
+\item 
+\mbox{\Hypertarget{main_8h_a49e20742845ff943a8cbfbc5c0038922}\label{main_8h_a49e20742845ff943a8cbfbc5c0038922}} 
+\#define {\bfseries PEDESTRIAN1\+\_\+\+GPIO\+\_\+\+Port}~GPIOA
+\item 
+\mbox{\Hypertarget{main_8h_a84e8a4417bff58f89a8214bf1d264bca}\label{main_8h_a84e8a4417bff58f89a8214bf1d264bca}} 
+\#define {\bfseries PEDESTRIAN1\+\_\+\+EXTI\+\_\+\+IRQn}~EXTI15\+\_\+10\+\_\+\+IRQn
+\item 
+\mbox{\Hypertarget{main_8h_a7cf5c294717061691133b1f0d3e1db6a}\label{main_8h_a7cf5c294717061691133b1f0d3e1db6a}} 
+\#define {\bfseries PEDESTRIAN2\+\_\+\+Pin}~GPIO\+\_\+\+PIN\+\_\+7
+\item 
+\mbox{\Hypertarget{main_8h_acc5fd219732f4f8221a54f35c46025d0}\label{main_8h_acc5fd219732f4f8221a54f35c46025d0}} 
+\#define {\bfseries PEDESTRIAN2\+\_\+\+GPIO\+\_\+\+Port}~GPIOB
+\item 
+\mbox{\Hypertarget{main_8h_a7cc8dfe5a90e6cdc9f05456153e676b2}\label{main_8h_a7cc8dfe5a90e6cdc9f05456153e676b2}} 
+\#define {\bfseries PEDESTRIAN2\+\_\+\+EXTI\+\_\+\+IRQn}~EXTI9\+\_\+5\+\_\+\+IRQn
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8h_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8h_ae299d1f979dcdf745586cb916479e4b3}\label{main_8h_ae299d1f979dcdf745586cb916479e4b3}} 
+uint8\+\_\+t {\bfseries LEDS} \mbox{[}3\mbox{]}
+\item 
+\mbox{\Hypertarget{main_8h_aec51920045aad7f70cbfd1f58228d866}\label{main_8h_aec51920045aad7f70cbfd1f58228d866}} 
+SPI\+\_\+\+Handle\+Type\+Def {\bfseries hspi3}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Header for main.\+c file. This file contains the common defines of the application. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2022 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8h_a1730ffe1e560465665eb47d9264826f9}\label{main_8h_a1730ffe1e560465665eb47d9264826f9}} 
+\index{main.h@{main.h}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}

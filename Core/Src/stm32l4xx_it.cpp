@@ -42,12 +42,15 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
+//for testing interrupts
+#ifdef RUN_TEST_PROGRAM
 States* test_state1 = new States(States::state1);
 States* test_state2 = new States(States::state2);
 States* test_state3 = new States(States::state3);
 States* test_state4 = new States(States::state4);
 States* test_stateY1 = new States(States::stateYellow1);
 States* test_stateY2 = new States(States::stateYellow2);
+#endif
 
 /* USER CODE END PV */
 
